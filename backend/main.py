@@ -23,10 +23,7 @@ app = FastAPI(title="Meeting Summarizer API")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",
-        "http://localhost:5173",
-        "https://*.railway.app",
-        "https://*.vercel.app"
+        "*"
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -37,7 +34,7 @@ app.add_middleware(
 async def root():
     return {"message": "Meeting Summarizer API", "mode": "real" if USE_REAL_AI else "mock"}
 
-@app.post("/summarize")
+@app.post("/api/summarize")
 async def summarize_meeting(file: UploadFile):
     """Handles meeting audio upload → transcription → summary generation"""
     tmp_path = None
@@ -125,3 +122,5 @@ Add OPENAI_API_KEY for real AI summaries."""
 @app.get("/health")
 async def health_check():
     return {"status": "healthy", "mode": "real" if USE_REAL_AI else "mock"}
+
+    

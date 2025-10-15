@@ -7,8 +7,8 @@ function App() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
 
-  // Use environment variable for API URL, fallback to localhost for development
-  const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  // ✅ CHANGED: Use relative path for single deployment
+  const API_BASE = '/api';
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -34,7 +34,9 @@ function App() {
 
     try {
       console.log('Uploading to:', API_BASE);
-      const response = await fetch(`${API_BASE}/summarize`, {
+      
+      // ✅ CHANGED: Remove ${API_BASE} and use direct path
+      const response = await fetch(`/api/summarize`, {
         method: 'POST',
         body: formData,
       });
@@ -52,6 +54,13 @@ function App() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleReset = () => {
+    setFile(null);
+    setResult(null);
+    setError('');
+    document.getElementById('audioFile').value = '';
   };
 
   return (
@@ -96,6 +105,13 @@ function App() {
             >
               {isLoading ? 'Processing...' : 'Summarize Meeting'}
             </button>
+            
+            <button
+              onClick={handleReset}
+              className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+            >
+              Reset
+            </button>
           </div>
         </div>
 
@@ -121,12 +137,6 @@ function App() {
         {/* Results */}
         {result && (
           <div className="space-y-6">
-            <div className={`p-4 rounded-lg ${result.mode === 'mock' ? 'bg-yellow-50 border border-yellow-200' : 'bg-green-50 border border-green-200'}`}>
-              <p className={`font-medium ${result.mode === 'mock' ? 'text-yellow-800' : 'text-green-800'}`}>
-                {result.mode === 'mock' ? '⚠️ Using mock data - Add OPENAI_API_KEY for real AI' : '✅ Using real AI processing'}
-              </p>
-            </div>
-
             {/* Summary Section */}
             <div className="bg-white rounded-lg shadow-md p-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
@@ -150,6 +160,15 @@ function App() {
                 </pre>
               </div>
             </div>
+
+            {/* Additional Info */}
+            {result.note && (
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <p className="text-sm text-blue-800">
+                  <strong>Note:</strong> {result.note}
+                </p>
+              </div>
+            )}
           </div>
         )}
       </div>
