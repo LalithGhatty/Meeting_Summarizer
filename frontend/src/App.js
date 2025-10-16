@@ -7,8 +7,8 @@ function App() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
 
-  // ✅ CHANGED: Use relative path for single deployment
-  const API_BASE = '/api';
+  // ✅ Use environment variable for backend URL
+  const API_BASE = import.meta.env.VITE_API_URL || 'https://meeting-summarizer-backend-87d3.onrender.com';
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -33,10 +33,10 @@ function App() {
     formData.append('file', file);
 
     try {
-      console.log('Uploading to:', API_BASE);
+      console.log('Uploading to:', `${API_BASE}/summarize`);
       
-      // ✅ CHANGED: Remove ${API_BASE} and use direct path
-      const response = await fetch(`/api/summarize`, {
+      // ✅ Call backend directly
+      const response = await fetch(`${API_BASE}/summarize`, {
         method: 'POST',
         body: formData,
       });
