@@ -8,17 +8,11 @@ import tempfile
 import json
 
 # ✅ Load environment variables
-openai_api_key = os.getenv("OPENAI_API_KEY")
+# ⚠️ Always use mock mode
+USE_REAL_AI = False
+client = None
+print("⚠️ Mock mode enabled: No OpenAI API required")
 
-# Use mock mode if no API key, real mode if key exists
-USE_REAL_AI = bool(openai_api_key)
-
-if USE_REAL_AI:
-    client = OpenAI(api_key=openai_api_key)
-    print("✅ Using real OpenAI API")
-else:
-    print("⚠️ Using mock mode - add OPENAI_API_KEY for real AI")
-    client = None
 
 # ✅ Create FastAPI app
 app = FastAPI(title="Meeting Summarizer API")
