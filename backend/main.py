@@ -22,7 +22,8 @@ else:
 
 # ✅ Create FastAPI app
 app = FastAPI(title="Meeting Summarizer API")
-frontend_url = "https://meeting-summarizer-frontend-0kdi.onrender.com"
+frontend_url = os.getenv("FRONTEND_URL", "https://meeting-summarizer-frontend-0kdi.onrender.com")
+
  
 
 # ✅ Enable CORS for all origins (since we're serving frontend from same domain)
