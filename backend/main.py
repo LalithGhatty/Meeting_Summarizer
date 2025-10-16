@@ -26,7 +26,7 @@ app = FastAPI(title="Meeting Summarizer API")
 # ✅ Enable CORS for all origins (since we're serving frontend from same domain)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[frontend_url, "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
