@@ -1,250 +1,307 @@
+🎯 Meeting Summarizer
+An AI-powered web application that transcribes and summarizes meeting audio files using OpenAI's Whisper and GPT models.
+🌟 Features
 
-A full-stack web application that transcribes meeting audio and generates AI-powered summaries with key discussion points, decisions, and action items using OpenAI's Whisper and GPT models.
+🎧 Audio Transcription - Convert meeting recordings to text using OpenAI Whisper
+📄 AI Summarization - Generate structured summaries with key points, decisions, and action items
+🎨 Modern UI - Clean, responsive interface built with React and Tailwind CSS
+⚡ Fast Processing - Efficient audio processing and AI-powered analysis
+🔒 Secure - API key management and secure file handling
+📱 Responsive Design - Works seamlessly on desktop and mobile devices
 
-https://img.shields.io/badge/React-18.2.0-blue
-https://img.shields.io/badge/FastAPI-0.104.1-green
-https://img.shields.io/badge/OpenAI-Whisper%252BGPT-orange
-https://img.shields.io/badge/Netlify-Deployed-brightgreen
-https://img.shields.io/badge/Cyclic-Backend-success
-
-✨ Features
-🎤 Audio Upload - Support for MP3, WAV, M4A files
-
-📝 AI Transcription - Powered by OpenAI Whisper
-
-🤖 Smart Summarization - GPT-powered meeting summaries
-
-🎯 Structured Output - Key points, decisions, and action items
-
-💫 Modern UI - Built with React & Tailwind CSS
-
-🚀 Easy Deployment - Deployed on Netlify + Cyclic
-
-🏗️ Architecture
-text
-Frontend (React + Vite) → Backend (FastAPI) → OpenAI API
-       ↓                          ↓
-    Netlify                    Cyclic.sh
 🚀 Live Demo
-Frontend: https://your-app.netlify.app
 
-Backend API: https://your-app.cyclic.app
+Frontend: https://meeting-summarizer-frontend.onrender.com
+Backend API: https://meeting-summarizer-backend-87d3.onrender.com
+API Docs: https://meeting-summarizer-backend-87d3.onrender.com/docs
 
-API Documentation: https://your-app.cyclic.app/docs
-
-📸 Screenshots
-(Add screenshots of your application here)
-
-🛠️ Technology Stack
-Frontend
-React 18 - UI framework
-
-Vite - Build tool & dev server
-
-Tailwind CSS - Styling
-
-Fetch API - HTTP requests
-
+🛠️ Tech Stack
 Backend
+
 FastAPI - Modern Python web framework
-
-OpenAI API - Whisper transcription & GPT summarization
-
+OpenAI API - Whisper (transcription) + GPT-4 (summarization)
 Uvicorn - ASGI server
+Python 3.11 - Core language
 
-Python-multipart - File upload handling
+Frontend
+
+React 18 - UI library
+Vite - Build tool and dev server
+Tailwind CSS - Utility-first styling
+JavaScript (ES6+) - Modern JavaScript
 
 Deployment
-Netlify - Frontend hosting
 
-Cyclic.sh - Backend hosting
+Render - Hosting platform for both frontend and backend
+GitHub - Version control and CI/CD
 
-GitHub - Version control
-
-🏃‍♂️ Quick Start
-Prerequisites
-Python 3.8+
-
-Node.js 16+
-
-OpenAI API key
-
-Local Development
-Clone the repository
-
-bash
-git clone https://github.com/yourusername/meeting-summarizer.git
-cd meeting-summarizer
-Backend Setup
-
-bash
-cd backend
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Set environment variables
-cp .env.example .env
-# Edit .env with your OPENAI_API_KEY
-
-# Start backend server
-uvicorn main:app --reload --port 8000
-Frontend Setup
-
-bash
-cd frontend
-
-# Install dependencies
-npm install
-
-# Start frontend server
-npm run dev
-Access the application
-
-Frontend: http://localhost:5173
-
-Backend API: http://localhost:8000
-
-API Docs: http://localhost:8000/docs
-
-🌐 Deployment
-Frontend (Netlify)
-Build the project: npm run build
-
-Drag & drop the dist folder to netlify.com/drop
-
-Or connect GitHub repo in Netlify dashboard
-
-Set environment variable: VITE_API_URL=your-backend-url
-
-Backend (Cyclic.sh)
-Go to cyclic.sh
-
-Sign up with GitHub
-
-Click "Link Your Own" and select your repository
-
-Set environment variable: OPENAI_API_KEY=your-key
-
-📚 API Documentation
-Endpoints
-Method	Endpoint	Description
-POST	/summarize	Upload audio file for summarization
-GET	/health	Health check endpoint
-GET	/	API information
-Example Request
-bash
-curl -X POST "https://your-app.cyclic.app/summarize" \
-  -H "accept: application/json" \
-  -H "Content-Type: multipart/form-data" \
-  -F "file=@meeting.mp3"
-Example Response
-json
-{
-  "status": "success",
-  "filename": "meeting.mp3",
-  "transcript": "Full meeting transcript...",
-  "summary": "1. KEY DISCUSSION POINTS:\n- Project timeline\n- Budget allocation\n\n2. DECISIONS MADE:\n- Approved Q4 budget\n\n3. ACTION ITEMS:\n- John: Update project plan"
-}
-🗂️ Project Structure
-text
+📁 Project Structure
 meeting-summarizer/
+│
 ├── backend/
 │   ├── main.py              # FastAPI application
 │   ├── requirements.txt     # Python dependencies
-│   ├── .env.example        # Environment template
-│   └── __init__.py         # Python package
+│   ├── runtime.txt          # Python version specification
+│   └── __init__.py          # Package initializer
+│
 ├── frontend/
 │   ├── src/
-│   │   ├── App.jsx         # Main React component
-│   │   ├── main.jsx        # React entry point
-│   │   └── App.css         # Styles
-│   ├── public/
-│   │   └── _redirects      # Netlify SPA configuration
-│   ├── package.json        # Node dependencies
-│   ├── vite.config.js      # Vite configuration
-│   └── index.html          # HTML template
-├── .gitignore              # Git ignore rules
-└── README.md              # Project documentation
-⚙️ Configuration
-Environment Variables
-Backend (.env)
+│   │   ├── App.js           # Main React component
+│   │   ├── App.css          # Component styles
+│   │   ├── index.js         # React entry point
+│   │   └── index.css        # Global styles (Tailwind)
+│   ├── public/              # Static assets
+│   ├── package.json         # Node dependencies
+│   ├── vite.config.js       # Vite configuration
+│   └── tailwind.config.js   # Tailwind configuration
+│
+└── README.md                # This file
+🔧 Local Development Setup
+Prerequisites
 
-env
-OPENAI_API_KEY=sk-your-openai-api-key
-Frontend (.env)
+Python 3.11+
+Node.js 18+
+OpenAI API Key (Get one here)
 
-env
-VITE_API_URL=http://localhost:8000
-🔧 Troubleshooting
-Common Issues
-CORS Errors
+Backend Setup
 
-Ensure backend CORS is configured for your frontend domain
+Clone the repository:
 
-Check environment variables are set correctly
+bashgit clone https://github.com/yourusername/meeting-summarizer.git
+cd meeting-summarizer/backend
 
-File Upload Issues
+Create virtual environment:
 
-Verify audio file format (MP3, WAV, M4A supported)
+bashpython -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-Check file size limits
+Install dependencies:
 
-OpenAI API Errors
+bashpip install -r requirements.txt
 
-Verify API key is valid and has sufficient credits
+Set environment variables:
 
-Check API rate limits
+bash# Create .env file
+echo "OPENAI_API_KEY=your_api_key_here" > .env
 
-Netlify 404 Errors
+Run the backend:
 
-Ensure _redirects file is in public folder
+bashuvicorn main:app --reload --port 8000
+Backend will be available at http://localhost:8000
+Frontend Setup
 
-Verify SPA redirects are configured
+Navigate to frontend:
 
-Build Issues
-bash
-# If frontend build fails
-cd frontend
-rm -rf node_modules
+bashcd ../frontend
+
+Install dependencies:
+
+bashnpm install
+
+Create .env file:
+
+bashecho "VITE_API_URL=http://localhost:8000" > .env
+
+Run the frontend:
+
+bashnpm run dev
+Frontend will be available at http://localhost:3000
+🌐 Deployment
+This project is deployed on Render with automatic deployments from GitHub.
+Deploy Your Own Instance
+Backend Deployment
+
+Fork this repository
+Sign up at Render
+Create a new Web Service
+Connect your GitHub repository
+Configure:
+
+Root Directory: backend
+Build Command: pip install -r requirements.txt
+Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT
+
+
+Add environment variable:
+
+OPENAI_API_KEY: Your OpenAI API key
+
+
+
+Frontend Deployment
+
+Create a new Static Site on Render
+Connect the same GitHub repository
+Configure:
+
+Root Directory: frontend
+Build Command: npm install && npm run build
+Publish Directory: dist
+
+
+Add environment variable:
+
+VITE_API_URL: Your backend URL (e.g., https://your-backend.onrender.com)
+
+
+
+For detailed deployment instructions, see DEPLOYMENT.md
+📖 API Documentation
+Endpoints
+GET /
+Root endpoint - returns API status
+json{
+  "message": "Meeting Summarizer API",
+  "mode": "real"
+}
+GET /health
+Health check endpoint
+json{
+  "status": "healthy",
+  "mode": "real"
+}
+POST /summarize
+Upload audio file for transcription and summarization
+Request:
+
+Content-Type: multipart/form-data
+Body: Audio file (MP3, WAV, M4A, etc.)
+
+Response:
+json{
+  "status": "success",
+  "mode": "real",
+  "filename": "meeting.mp3",
+  "transcript": "Full transcription text...",
+  "summary": "Structured summary with key points..."
+}
+Interactive API documentation available at /docs
+🎨 Features in Detail
+AI-Powered Transcription
+
+Uses OpenAI's Whisper model for accurate speech-to-text
+Supports multiple audio formats
+Handles various audio qualities and accents
+
+Intelligent Summarization
+The AI generates structured summaries with:
+
+Key Discussion Points - Main topics and conversations
+Decisions Made - Important decisions and outcomes
+Action Items - Tasks, assignees, and deadlines
+
+User Experience
+
+Drag-and-drop file upload
+Real-time processing status
+Clear error messages
+Responsive design for all devices
+Download/copy summary and transcript
+
+🔒 Security & Privacy
+
+API keys stored securely as environment variables
+Temporary files deleted after processing
+No permanent storage of audio files
+HTTPS encryption for all communications
+CORS configured for security
+
+🐛 Troubleshooting
+Backend Issues
+Error: OpenAI API Key not found
+bash# Set your API key
+export OPENAI_API_KEY="your_key_here"
+Error: Port already in use
+bash# Use a different port
+uvicorn main:app --port 8001
+Frontend Issues
+Error: Cannot connect to backend
+
+Check if backend is running
+Verify VITE_API_URL is correct
+Check CORS settings in backend
+
+Build fails
+bash# Clear cache and reinstall
+rm -rf node_modules package-lock.json
 npm install
-npm run build
+Deployment Issues
+Render service won't start
 
-# If backend deployment fails
-cd backend
-pip install -r requirements.txt
+Check logs in Render dashboard
+Verify environment variables are set
+Ensure Python/Node versions match requirements
+
+Cold starts taking long
+
+Free tier services sleep after 15 minutes
+First request after sleep takes 30-60 seconds
+Consider upgrading to paid tier for production
+
 🤝 Contributing
-Fork the project
+Contributions are welcome! Please follow these steps:
 
-Create your feature branch (git checkout -b feature/AmazingFeature)
-
+Fork the repository
+Create a feature branch (git checkout -b feature/AmazingFeature)
 Commit your changes (git commit -m 'Add some AmazingFeature')
-
 Push to the branch (git push origin feature/AmazingFeature)
-
 Open a Pull Request
 
 📝 License
 This project is licensed under the MIT License - see the LICENSE file for details.
+👥 Authors
+
+Your Name - Initial work - YourGitHub
 
 🙏 Acknowledgments
+
 OpenAI for Whisper and GPT APIs
-
-FastAPI for the excellent web framework
-
-Vite for the frontend tooling
-
-Netlify for easy frontend deployment
-
-Cyclic for reliable backend hosting
+FastAPI community for excellent documentation
+React and Vite teams for amazing tools
+Render for free hosting
 
 📞 Support
-If you have any questions or run into issues, please open an issue on GitHub.
 
-Built with ❤️ using FastAPI, React, and OpenAI
+Issues: GitHub Issues
+Email: your.email@example.com
+Documentation: Full Docs
 
-Transform your meetings into actionable insights! 
+🔮 Roadmap
+
+ Multi-language support
+ Speaker identification (diarization)
+ Export summaries as PDF
+ Integration with calendar apps
+ Real-time transcription
+ Team collaboration features
+ Custom summary templates
+ Webhook notifications
+
+💰 Costs
+Development (Free)
+
+Local development: $0
+
+Production (Estimated Monthly)
+
+Render Hosting: $0 (Free tier)
+OpenAI API: ~$0.006 per minute of audio
+
+Whisper: $0.006/min
+GPT-4-mini: ~$0.001-0.003/request
+
+
+Estimated for 100 meetings (avg 30 min each): ~$18-25/month
+
+Tips to Reduce Costs
+
+Use shorter audio clips for testing
+Implement caching for repeated requests
+Set usage limits in OpenAI dashboard
+Monitor API usage regularly
+
+
+⭐ Star History
+If you find this project useful, please consider giving it a star! ⭐
+
+Built with ❤️ using OpenAI, FastAPI, and React
